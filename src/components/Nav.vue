@@ -8,14 +8,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+
   export default {
-    name: "Nav"
-  }
+    name: 'Nav'
+  };
 </script>
 
 <style lang="scss" scoped>
-  #nav{
-
+  #nav {
   }
 </style>
