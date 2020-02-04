@@ -8,16 +8,15 @@
   </div>
 </template>
 <style lang="scss">
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  @import "src/assets/style/reset.scss";
+  @import "src/assets/style/helper.scss";
+  body {
   }
-  body{
+  #app {
     line-height: 1.5;
-  }
-  a{
-    text-decoration: none;
-    color: inherit;
+    font-family: $font-hei;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
   }
 </style>
