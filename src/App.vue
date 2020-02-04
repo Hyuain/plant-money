@@ -10,13 +10,14 @@
 <style lang="scss">
   @import "src/assets/style/reset.scss";
   @import "src/assets/style/helper.scss";
-  body {
-  }
   #app {
     line-height: 1.5;
     font-family: $font-hei;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #333;
+    height: 100vh;
+    overflow: hidden;
   }
 </style>

@@ -3,3 +3,21 @@ $font-song: Georgia, "Nimbus Roman No9 L", "Songti SC", "Noto Serif CJK SC", "So
 $font-kai: Baskerville, Georgia, "Liberation Serif", "Kaiti SC", STKaiti, "AR PL UKai CN", "AR PL UKai HK", "AR PL UKai TW", "AR PL UKai TW MBE", "AR PL KaitiM GB", KaiTi, KaiTi_GB2312, DFKai-SB, "TW\-Kai", serif;
 
 $color-highlight: #777;
+$color-shadow: rgba(0,0,0,.25);
+
+%clear-fix{
+  &::after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+%outer-shadow{
+  box-shadow: 0 0 3px $color-shadow;
+}
+
+%inner-shadow{
+  box-shadow: inset 0 -3px 3px -3px $color-shadow,
+              inset 0 3px 3px -3px $color-shadow;
+}
