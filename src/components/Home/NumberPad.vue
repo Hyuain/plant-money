@@ -1,29 +1,67 @@
 <template>
   <div class="number-pad">
-    <div class="display">100</div>
+    <div class="display">{{display}}</div>
     <div class="buttons">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>删除</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>清空</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button class="ok">OK</button>
-      <button class="zero">0</button>
-      <button>.</button>
+      <button @click="inputNumber">1</button>
+      <button @click="inputNumber">2</button>
+      <button @click="inputNumber">3</button>
+      <button @click="remove">删除</button>
+      <button @click="inputNumber">4</button>
+      <button @click="inputNumber">5</button>
+      <button @click="inputNumber">6</button>
+      <button @click="clear">清空</button>
+      <button @click="inputNumber">7</button>
+      <button @click="inputNumber">8</button>
+      <button @click="inputNumber">9</button>
+      <button class="ok" @click="onOK">OK</button>
+      <button class="zero" @click="inputNumber">0</button>
+      <button @click="inputNumber">.</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'NumberPad'
-  };
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+
+  @Component
+  export default class NumberPad extends Vue {
+    display: string = '0';
+
+    inputNumber(event: MouseEvent | TouchEvent) {
+      const button = (event.target as HTMLButtonElement);
+      const input = button.textContent!;
+      if (this.display.length === 16) return;
+      if (input === '.' && this.display.indexOf('.') > 0) return;
+      if (this.display === '0') {
+        if (input === '0') {
+          return;
+        } else if (input === '.') {
+          this.display += input;
+        } else {
+          this.display = input;
+        }
+        return;
+      }
+      this.display += input;
+    }
+
+    remove() {
+      this.display = this.display.slice(0, -1);
+      if (this.display === '') {
+        this.display = '0';
+      }
+    }
+
+    clear() {
+      this.display = '0';
+    }
+
+    onOK() {
+
+    }
+  }
+
 </script>
 
 <style lang="scss" scoped>
