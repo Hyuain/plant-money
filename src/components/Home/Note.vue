@@ -1,18 +1,19 @@
 <template>
   <label class="note">
     <span class="name">备注</span>
-    <input type="text" v-model="text"
+    <input type="text" v-model="value"
            placeholder="在这里输入备注">
   </label>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class Note extends Vue {
-    text = '';
+    @Prop() readonly value!: string;
+
   }
 </script>
 

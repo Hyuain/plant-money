@@ -19,7 +19,8 @@
   @Component
   export default class Tags extends Vue {
     @Prop() readonly dataSource: string[] | undefined;
-    selectedTags: string[] = [];
+    @Prop() readonly value!: string[];
+    selectedTags: string[] = this.value;
 
     toggle(tag: string) {
       const index = this.selectedTags.indexOf(tag);
@@ -28,6 +29,7 @@
       } else {
         this.selectedTags.push(tag);
       }
+      this.$emit('update:value', this.selectedTags);
     }
 
     create() {
