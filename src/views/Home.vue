@@ -20,6 +20,7 @@
     note: string
     type: string
     amount: number
+    createdAt?: Date
   }
 
   @Component({
@@ -28,11 +29,12 @@
   export default class Home extends Vue {
     customTags = ['衣', '食', '住', '行'];
     record: Record = {tags: [], note: '', type: '-', amount: 0};
-    records: Record[] = [];
+    records: Record[] = JSON.parse(localStorage.getItem('records') || '[]');
 
     saveRecord() {
-      this.records.push(JSON.parse(JSON.stringify(this.record)));
-      console.log(this.records);
+      const recordCopy: Record = JSON.parse(JSON.stringify(this.record));
+      recordCopy.createdAt = new Date();
+      this.records.push(recordCopy);
     }
 
     @Watch('records')

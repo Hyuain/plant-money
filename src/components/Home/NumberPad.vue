@@ -60,7 +60,8 @@
 
     ok() {
       this.$emit('update:value', this.display);
-      this.$emit('submit')
+      this.$emit('submit');
+      this.display = '0';
     }
   }
 
