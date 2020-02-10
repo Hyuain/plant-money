@@ -14,7 +14,8 @@
   import Types from '@/components/Home/Types.vue';
   import Note from '@/components/Home/Note.vue';
   import Tags from '@/components/Home/Tags.vue';
-  import model from '@/model';
+  import recordsModel from '@/models/recordsModel';
+  import tagsModel from '@/models/tagsModel';
 
   @Component({
     components: {Tags, Note, Types, NumberPad}
@@ -22,17 +23,18 @@
   export default class Home extends Vue {
     customTags = ['衣', '食', '住', '行'];
     record: RecordItem = {tags: [], note: '', type: '-', amount: 0};
-    records = model.fetch();
+    records = recordsModel.fetch();
+    tags = tagsModel.fetch();
 
     saveRecord() {
-      const recordCopy: RecordItem = model.clone(this.record);
+      const recordCopy: RecordItem = recordsModel.clone(this.record);
       recordCopy.createdAt = new Date();
       this.records.push(recordCopy);
     }
 
     @Watch('records')
     onRecordsChange() {
-      model.save(this.records);
+      recordsModel.save(this.records);
     }
   }
 </script>
