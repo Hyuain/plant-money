@@ -14,9 +14,28 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Labels',
-  };
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+  import tagsModel from '@/models/tagsModel';
+
+  tagsModel.fetch();
+
+  @Component
+  export default class Labels extends Vue {
+    tags = tagsModel.data;
+
+    create() {
+      const name = window.prompt('请输入标签名');
+      if (name) {
+        const message = tagsModel.create(name);
+        if (message === 'duplicated') {
+          alert('标签名重复了');
+        } else if (message === 'success') {
+          alert('添加标签成功啦');
+        }
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
