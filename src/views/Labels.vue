@@ -1,11 +1,11 @@
 <template>
   <Layout class-prefix="labels">
     <div>
-      <ol class="labels">
-        <li v-for="label in labels" :key="label.id"><span>{{label.name}}</span>
+      <div class="labels">
+        <router-link class="label" :to="`/labels/edit/${label.id}`" v-for="label in labels" :key="label.id"><span>{{label.name}}</span>
           <Icon name="right"/>
-        </li>
-      </ol>
+        </router-link>
+      </div>
     </div>
     <div class="create-button-wrapper">
       <button class="create-button" @click="create">新建标签</button>
@@ -43,7 +43,7 @@
     background-color: #FFF;
     font-size: 16px;
     padding-left: 16px;
-    > li {
+    .label {
       min-height: 44px;
       display: flex;
       align-items: center;
