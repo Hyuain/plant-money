@@ -2,7 +2,7 @@
   <Layout class-prefix="labels">
     <div>
       <ol class="labels">
-        <li v-for="label in labels" :key="label"><span>{{label}}</span>
+        <li v-for="label in labels" :key="label.id"><span>{{label.name}}</span>
           <Icon name="right"/>
         </li>
       </ol>
