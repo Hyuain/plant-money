@@ -1,16 +1,21 @@
-const localStorageKeyName = 'tags';
+const localStorageKeyName = 'labels';
 
-type TagsModel = {
+type Label ={
+  id: string;
+  name: string
+}
+
+type LabelsModel = {
   data: string[]
   fetch: () => string[]
   create: (name: string) => 'success' | 'duplicated'
   save: () => void
 }
 
-const tagsModel: TagsModel = {
+const labelsModel: LabelsModel = {
   data: [],
   fetch() {
-    this.data = JSON.parse(localStorage.getItem('tags') || '[]');
+    this.data = JSON.parse(localStorage.getItem('labels') || '[]');
     return this.data;
   },
   create(name) {
@@ -26,4 +31,4 @@ const tagsModel: TagsModel = {
   }
 };
 
-export default tagsModel;
+export default labelsModel;

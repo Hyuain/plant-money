@@ -1,5 +1,5 @@
 type RecordItem = {
-  tags: string[]
+  labels: string[]
   note: string
   type: string
   amount: number

@@ -3,7 +3,7 @@
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <Types :value.sync="record.type"/>
     <Note :value.sync="record.note"/>
-    <Tags :data-source.sync="customTags" :value.sync="record.tags"/>
+    <Labels :data-source.sync="customLabels" :value.sync="record.labels"/>
   </Layout>
 </template>
 
@@ -13,18 +13,18 @@
   import NumberPad from '@/components/Home/NumberPad.vue';
   import Types from '@/components/Home/Types.vue';
   import Note from '@/components/Home/Note.vue';
-  import Tags from '@/components/Home/Tags.vue';
+  import Labels from '@/components/Home/Labels.vue';
   import recordsModel from '@/models/recordsModel';
-  import tagsModel from '@/models/tagsModel';
+  import labelsModel from '@/models/labelsModel';
 
   @Component({
-    components: {Tags, Note, Types, NumberPad}
+    components: {Labels, Note, Types, NumberPad}
   })
   export default class Home extends Vue {
-    customTags = ['衣', '食', '住', '行'];
-    record: RecordItem = {tags: [], note: '', type: '-', amount: 0};
+    customLabels = ['衣', '食', '住', '行'];
+    record: RecordItem = {labels: [], note: '', type: '-', amount: 0};
     records = recordsModel.fetch();
-    tags = tagsModel.fetch();
+    labels = labelsModel.fetch();
 
     saveRecord() {
       const recordCopy: RecordItem = recordsModel.clone(this.record);
