@@ -1,10 +1,5 @@
 const localStorageKeyName = 'labels';
 
-type Label = {
-  id: string
-  name: string
-}
-
 type LabelsModel = {
   data: Label[]
   fetch: () => Label[]

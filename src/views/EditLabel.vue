@@ -6,7 +6,7 @@
       <span class="right-icon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem field-name="标签名" place-holder="请输入标签名"/>
+      <FormItem :value="label.name" field-name="标签名" place-holder="请输入标签名"/>
     </div>
     <div class="button-wrapper">
       <Button>删除标签</Button>
@@ -25,13 +25,15 @@
     components: {Button, FormItem}
   })
   export default class EditLabel extends Vue {
+    label?: Label = undefined;
+
     created() {
       const {id} = this.$route.params;
       labelsModel.fetch();
       const labels = labelsModel.data;
       const label = labels.filter(t => t.id === id)[0];
       if (label) {
-        console.log(label);
+        this.label = label;
       } else {
         this.$router.replace('/404');
       }

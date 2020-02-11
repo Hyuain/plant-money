@@ -5,3 +5,8 @@ type RecordItem = {
   amount: number
   createdAt?: Date
 }
+
+type Label = {
+  id: string
+  name: string
+}
