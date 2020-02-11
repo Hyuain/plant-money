@@ -1,7 +1,9 @@
 <template>
   <Layout>
-
-    编辑标签
+    <div>
+      <Icon name="left"/>
+      <span>编辑标签</span>
+    </div>
   </Layout>
 </template>
 
@@ -17,10 +19,10 @@
       labelsModel.fetch();
       const labels = labelsModel.data;
       const label = labels.filter(t => t.id === id)[0];
-      if(label){
+      if (label) {
         console.log(label);
       } else {
-        this.$router.replace('/404')
+        this.$router.replace('/404');
       }
     }
   }
