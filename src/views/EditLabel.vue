@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="nav-bar">
-      <Icon class="left-icon" name="left"/>
+      <Icon class="left-icon" name="left" @click="goBack"/>
       <span class="title">编辑标签</span>
       <span class="right-icon"></span>
     </div>
@@ -49,6 +49,11 @@
       if (this.label) {
         labelsModel.delete(this.label.id);
       }
+      this.$router.push('/labels');
+    }
+
+    goBack(){
+      this.$router.push('/labels');
     }
 
   }
