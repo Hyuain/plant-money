@@ -6,10 +6,10 @@
       <span class="right-icon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value="label.name" @update:value="onUpdateLabel" field-name="标签名" place-holder="请输入标签名"/>
+      <FormItem :value="label.name" @update:value="updateLabel" field-name="标签名" place-holder="请输入标签名"/>
     </div>
     <div class="button-wrapper">
-      <Button>删除标签</Button>
+      <Button @click="deleteLabel">删除标签</Button>
     </div>
   </Layout>
 </template>
@@ -39,11 +39,18 @@
       }
     }
 
-    onUpdateLabel(name: string) {
+    updateLabel(name: string) {
       if (this.label) {
         labelsModel.update(this.label.id, name);
       }
     }
+
+    deleteLabel() {
+      if (this.label) {
+        labelsModel.delete(this.label.id);
+      }
+    }
+
   }
 </script>
 
