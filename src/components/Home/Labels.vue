@@ -45,6 +45,7 @@
 
 <style lang="scss" scoped>
   .labels {
+    background: #fff;
     flex-grow: 1;
     font-size: 14px;
     padding: 16px;

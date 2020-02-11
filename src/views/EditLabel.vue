@@ -1,11 +1,16 @@
 <template>
   <Layout>
     <div class="nav-bar">
-      <Icon name="left"/>
-      <span>编辑标签</span>
+      <Icon class="left-icon" name="left"/>
+      <span class="title">编辑标签</span>
+      <span class="right-icon"></span>
     </div>
-    <FormItem field-name="标签名" place-holder="请输入标签名"/>
-    <Button>删除标签</Button>
+    <div class="form-wrapper">
+      <FormItem field-name="标签名" place-holder="请输入标签名"/>
+    </div>
+    <div class="button-wrapper">
+      <Button>删除标签</Button>
+    </div>
   </Layout>
 </template>
 
@@ -35,5 +40,32 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .nav-bar {
+    text-align: center;
+    font-size: 16px;
+    padding: 12px 16px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .title {
+    }
+    .left-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .right-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .form-wrapper {
+    background: #fff;
+    margin-top: 8px;
+  }
+  .button-wrapper {
+    text-align: center;
+    padding: 16px;
+    margin-top: 36px;
+  }
 </style>
