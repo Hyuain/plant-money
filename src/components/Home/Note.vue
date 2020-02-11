@@ -1,8 +1,8 @@
 <template>
   <label class="note">
-    <span class="name">备注</span>
+    <span class="name">{{fieldName}}</span>
     <input type="text" v-model="value"
-           placeholder="在这里输入备注">
+           :placeholder="placeHolder">
   </label>
 </template>
 
@@ -13,7 +13,8 @@
   @Component
   export default class Note extends Vue {
     @Prop() readonly value!: string;
-
+    @Prop({required: true}) readonly fieldName!: string;
+    @Prop() readonly placeHolder?: string;
   }
 </script>
 
