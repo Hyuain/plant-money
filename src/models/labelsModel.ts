@@ -1,3 +1,5 @@
+import createId from '@/lib/createId';
+
 const localStorageKeyName = 'labels';
 
 type LabelsModel = {
@@ -20,7 +22,8 @@ const labelsModel: LabelsModel = {
     if (names.indexOf(name) >= 0) {
       return 'duplicated';
     }
-    this.data.push({id: name, name: name});
+    const id = createId().toString();
+    this.data.push({id, name: name});
     this.save();
     return 'success';
   },
