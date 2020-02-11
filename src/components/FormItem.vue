@@ -1,7 +1,9 @@
 <template>
   <label class="form-item">
     <span class="name">{{fieldName}}</span>
-    <input type="text" v-model="value"
+    <input type="text"
+           :value="value"
+           @input="$emit('update:value',$event.target.value)"
            :placeholder="placeHolder">
   </label>
 </template>
@@ -12,7 +14,7 @@
 
   @Component
   export default class FormItem extends Vue {
-    @Prop() readonly value!: string;
+    @Prop({default: ''}) readonly value!: string;
     @Prop({required: true}) readonly fieldName!: string;
     @Prop() readonly placeHolder?: string;
   }
