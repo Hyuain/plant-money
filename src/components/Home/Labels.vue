@@ -4,9 +4,9 @@
       <button @click="create">新增标签</button>
     </div>
     <ul class="current">
-      <li v-for="label in dataSource" :key="label"
+      <li v-for="label in dataSource" :key="label.id"
           :class="{selected: selectedLabels.indexOf(label) >= 0}"
-          @click="toggle(label)">{{label}}
+          @click="toggle(label)">{{label.name}}
       </li>
     </ul>
   </div>
@@ -15,6 +15,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import labelsModel from '@/models/labelsModel';
 
   @Component
   export default class Labels extends Vue {
@@ -34,10 +35,13 @@
 
     create() {
       const name = window.prompt('请输入标签名');
-      if (name === '') {
-        window.alert('标签名不能为空');
-      } else if (this.dataSource) {
-        this.$emit('update:dataSource', [...this.dataSource, name]);
+      if (name) {
+        const message = labelsModel.create(name);
+        if (message === 'duplicated') {
+          alert('标签名重复了');
+        } else if (message === 'success') {
+          alert('添加标签成功啦');
+        }
       }
     }
   }

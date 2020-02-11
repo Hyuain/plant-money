@@ -5,7 +5,7 @@
     <div class="notes">
       <FormItem :value.sync="record.note" field-name="备注" place-holder="在这里输入备注"/>
     </div>
-    <Labels :data-source.sync="customLabels" :value.sync="record.labels"/>
+    <Labels :data-source.sync="labels" :value.sync="record.labels"/>
   </Layout>
 </template>
 
@@ -23,7 +23,6 @@
     components: {Labels, FormItem, Types, NumberPad}
   })
   export default class Home extends Vue {
-    customLabels = ['衣', '食', '住', '行'];
     record: RecordItem = {labels: [], note: '', type: '-', amount: 0};
     records = recordsModel.fetch();
     labels = labelsModel.fetch();
