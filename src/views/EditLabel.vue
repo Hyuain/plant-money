@@ -1,10 +1,11 @@
 <template>
   <Layout>
-    <div>
+    <div class="nav-bar">
       <Icon name="left"/>
       <span>编辑标签</span>
     </div>
-    <Note field-name="标签名" place-holder="请输入标签名"/>
+    <FormItem field-name="标签名" place-holder="请输入标签名"/>
+    <Button>删除标签</Button>
   </Layout>
 </template>
 
@@ -12,9 +13,11 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import labelsModel from '@/models/labelsModel';
-  import Note from '@/components/Home/Note.vue';
+  import FormItem from '@/components/FormItem.vue';
+  import Button from '@/components/Button.vue';
+
   @Component({
-    components: {Note}
+    components: {Button, FormItem}
   })
   export default class EditLabel extends Vue {
     created() {
