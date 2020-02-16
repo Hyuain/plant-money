@@ -19,12 +19,11 @@
   import labelsModel from '@/models/labelsModel';
   import Button from '@/components/Button.vue';
 
-  labelsModel.fetch();
   @Component({
     components: {Button}
   })
   export default class Labels extends Vue {
-    labels = labelsModel.data;
+    labels = window.labels;
 
     create() {
       const name = window.prompt('请输入标签名');

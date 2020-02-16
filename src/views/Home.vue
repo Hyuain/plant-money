@@ -17,7 +17,6 @@
   import FormItem from '@/components/FormItem.vue';
   import Labels from '@/components/Home/Labels.vue';
   import recordsModel from '@/models/recordsModel';
-  import labelsModel from '@/models/labelsModel';
 
   @Component({
     components: {Labels, FormItem, Types, NumberPad}
@@ -25,7 +24,7 @@
   export default class Home extends Vue {
     record: RecordItem = {labels: [], note: '', type: '-', amount: 0};
     records = recordsModel.fetch();
-    labels = labelsModel.fetch();
+    labels = window.labels;
 
     saveRecord() {
       recordsModel.create(this.record);
