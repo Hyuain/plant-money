@@ -1,14 +1,20 @@
+import clone from '@/lib/clone';
+
 const localStorageKeyName = 'records';
 
 const recordsModel = {
-  clone(data: RecordItem[] | RecordItem){
-    return JSON.parse(JSON.stringify(data));
-  },
+  data: [] as RecordItem[],
   fetch() {
-    return JSON.parse(localStorage.getItem('records') || '[]') as RecordItem[];
+    this.data = JSON.parse(localStorage.getItem(localStorageKeyName) || '[]') as RecordItem[];
+    return this.data;
   },
-  save(data: RecordItem[]) {
-    localStorage.setItem(localStorageKeyName, JSON.stringify(data));
+  create(record: RecordItem) {
+    const recordCopy: RecordItem = clone(record);
+    recordCopy.createdAt = new Date();
+    this.data.push(recordCopy);
+  },
+  save() {
+    localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
   }
 };
 

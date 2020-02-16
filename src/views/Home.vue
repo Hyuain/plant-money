@@ -5,7 +5,7 @@
     <div class="notes">
       <FormItem :value.sync="record.note" field-name="备注" place-holder="在这里输入备注"/>
     </div>
-    <Labels :data-source.sync="labels" :value.sync="record.labels"/>
+    <Labels :data-source="labels" :value.sync="record.labels"/>
   </Layout>
 </template>
 
@@ -28,14 +28,12 @@
     labels = labelsModel.fetch();
 
     saveRecord() {
-      const recordCopy: RecordItem = recordsModel.clone(this.record);
-      recordCopy.createdAt = new Date();
-      this.records.push(recordCopy);
+      recordsModel.create(this.record);
     }
 
     @Watch('records')
     onRecordsChange() {
-      recordsModel.save(this.records);
+      recordsModel.save();
     }
   }
 </script>
@@ -44,7 +42,7 @@
   .home-main {
     display: flex;
     flex-direction: column-reverse;
-    .notes{
+    .notes {
       padding: 12px 0;
     }
   }
