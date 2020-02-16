@@ -17,7 +17,6 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import labelsModel from '@/models/labelsModel';
   import FormItem from '@/components/FormItem.vue';
   import Button from '@/components/Button.vue';
 
@@ -28,31 +27,26 @@
     label?: Label = undefined;
 
     created() {
-      const {id} = this.$route.params;
-      labelsModel.fetch();
-      const labels = labelsModel.data;
-      const label = labels.filter(t => t.id === id)[0];
-      if (label) {
-        this.label = label;
-      } else {
+      this.label = window.findLabel(this.$route.params.id);
+      if (!this.label) {
         this.$router.replace('/404');
       }
     }
 
     updateLabel(name: string) {
       if (this.label) {
-        labelsModel.update(this.label.id, name);
+        window.updateLabel(this.label.id, name);
       }
     }
 
     deleteLabel() {
       if (this.label) {
-        labelsModel.delete(this.label.id);
+        window.deleteLabel(this.label.id);
       }
       this.$router.push('/labels');
     }
 
-    goBack(){
+    goBack() {
       this.$router.push('/labels');
     }
 

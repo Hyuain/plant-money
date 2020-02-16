@@ -16,7 +16,6 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import labelsModel from '@/models/labelsModel';
   import Button from '@/components/Button.vue';
 
   @Component({
@@ -28,12 +27,7 @@
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        const message = labelsModel.create(name);
-        if (message === 'duplicated') {
-          alert('标签名重复了');
-        } else if (message === 'success') {
-          alert('添加标签成功啦');
-        }
+        window.createLabel(name);
       }
     }
   }
