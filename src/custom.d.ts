@@ -22,8 +22,10 @@ type LabelsModel = {
 
 interface Window {
   labels: Label[]
-  findLabel: (id:string) => Label | undefined
+  findLabel: (id: string) => Label | undefined
   createLabel: (name: string) => void
   deleteLabel: (id: string) => void
   updateLabel: LabelsModel['update']
+  records: RecordItem[]
+  createRecord: (record: RecordItem) => void
 }

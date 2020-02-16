@@ -12,6 +12,7 @@ const recordsModel = {
     const recordCopy: RecordItem = clone(record);
     recordCopy.createdAt = new Date();
     this.data.push(recordCopy);
+    this.save();
   },
   save() {
     localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));

@@ -1,6 +1,6 @@
 <template>
   <Layout class-prefix="home">
-    <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
+    <NumberPad :value.sync="record.amount" @submit="createRecord"/>
     <Types :value.sync="record.type"/>
     <div class="notes">
       <FormItem :value.sync="record.note" field-name="备注" place-holder="在这里输入备注"/>
@@ -11,28 +11,22 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Watch} from 'vue-property-decorator';
+  import {Component} from 'vue-property-decorator';
   import NumberPad from '@/components/Home/NumberPad.vue';
   import Types from '@/components/Home/Types.vue';
   import FormItem from '@/components/FormItem.vue';
   import Labels from '@/components/Home/Labels.vue';
-  import recordsModel from '@/models/recordsModel';
 
   @Component({
     components: {Labels, FormItem, Types, NumberPad}
   })
   export default class Home extends Vue {
     record: RecordItem = {labels: [], note: '', type: '-', amount: 0};
-    records = recordsModel.fetch();
+    records = window.records;
     labels = window.labels;
 
-    saveRecord() {
-      recordsModel.create(this.record);
-    }
-
-    @Watch('records')
-    onRecordsChange() {
-      recordsModel.save();
+    createRecord() {
+      window.createRecord(this.record);
     }
   }
 </script>
