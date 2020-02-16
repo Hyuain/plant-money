@@ -16,17 +16,18 @@
   import Types from '@/components/Home/Types.vue';
   import FormItem from '@/components/FormItem.vue';
   import Labels from '@/components/Home/Labels.vue';
+  import store from '@/store/index2';
 
   @Component({
     components: {Labels, FormItem, Types, NumberPad}
   })
   export default class Home extends Vue {
     record: RecordItem = {labels: [], note: '', type: '-', amount: 0};
-    records = window.records;
-    labels = window.labels;
+    records = store.records;
+    labels = store.labels;
 
     createRecord() {
-      window.createRecord(this.record);
+      store.createRecord(this.record);
     }
   }
 </script>

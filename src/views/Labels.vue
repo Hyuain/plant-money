@@ -17,17 +17,18 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import Button from '@/components/Button.vue';
+  import store from '@/store/index2';
 
   @Component({
     components: {Button}
   })
   export default class Labels extends Vue {
-    labels = window.labels;
+    labels = store.labels;
 
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        window.createLabel(name);
+        store.createLabel(name);
       }
     }
   }

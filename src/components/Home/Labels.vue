@@ -15,6 +15,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import store from '@/store/index2';
 
   @Component
   export default class Labels extends Vue {
@@ -35,7 +36,7 @@
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        window.createLabel(name);
+        store.createLabel(name);
       }
     }
   }

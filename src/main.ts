@@ -6,8 +6,6 @@ import store from './store';
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
-import labelsModel from '@/models/labelsModel';
-import recordsModel from '@/models/recordsModel';
 
 Vue.config.productionTip = false;
 
@@ -16,32 +14,6 @@ Vue.component('Layout', Layout);
 Vue.component('Icon', Icon);
 
 
-// record store
-window.records = recordsModel.fetch();
-window.createRecord = (record: RecordItem)=> {
-  recordsModel.create(record);
-};
-
-
-// label store
-window.labels = labelsModel.fetch();
-window.findLabel = (id: string) => {
-  return window.labels.filter(t => t.id === id)[0];
-};
-window.createLabel = (name: string) => {
-  const message = labelsModel.create(name);
-  if (message === 'duplicated') {
-    alert('标签名重复了');
-  } else if (message === 'success') {
-    alert('添加标签成功啦');
-  }
-};
-window.deleteLabel = (id: string) => {
-  labelsModel.delete(id);
-};
-window.updateLabel = (id: string, name: string) => {
-  return labelsModel.update(id, name);
-};
 
 new Vue({
   router,
