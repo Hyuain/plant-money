@@ -21,14 +21,21 @@
   import Button from '@/components/Button.vue';
 
   @Component({
-    components: {Button, FormItem}
+    components: {Button, FormItem},
+    computed: {
+      currentLabel(){
+        return this.$store.state.currentLabel
+      }
+    }
   })
   export default class EditLabel extends Vue {
     label?: Label = undefined;
 
     created() {
-      // this.label = store.findLabel(this.$route.params.id);
-      if (!this.label) {
+      const id = this.$route.params.id;
+      this.$store.commit('fetchLabels');
+      this.$store.commit('setCurrentLabel', id);
+      if (!this.currentLabel) {
         this.$router.replace('/404');
       }
     }

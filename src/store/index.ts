@@ -5,12 +5,18 @@ import createId from '@/lib/createId';
 
 Vue.use(Vuex);
 
+type RootState = {
+  records: RecordItem[]
+  labels: Label[]
+  currentLabel?: Label
+}
+
 const store = new Vuex.Store({
   state: {
-    records: [] as RecordItem[],
-    labels: [] as Label[],
+    records: [],
+    labels: [],
     currentLabel: undefined
-  },
+  } as RootState,
   mutations: {
     fetchRecords(state) {
       state.records = JSON.parse(localStorage.getItem('records') || '[]');
@@ -41,6 +47,9 @@ const store = new Vuex.Store({
     },
     saveLabels(state) {
       localStorage.setItem('labels', JSON.stringify(state.labels));
+    },
+    setCurrentLabel(state, id: string) {
+      state.currentLabel = state.labels.filter(item => item.id === id)[0];
     }
   },
   actions: {},
