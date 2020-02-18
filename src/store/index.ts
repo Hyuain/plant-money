@@ -48,6 +48,35 @@ const store = new Vuex.Store({
     saveLabels(state) {
       localStorage.setItem('labels', JSON.stringify(state.labels));
     },
+    updateLabel(state, payload: { id: string, name: string }) {
+      const {id, name} = payload;
+      const idList = state.labels.map(item => item.id);
+      const index = idList.indexOf(id);
+      if (index >= 0) {
+        const names = state.labels.map(item => item.name);
+        if (names.indexOf(name) >= 0) {
+          alert('标签名重复了');
+        } else {
+          state.labels[index].name = name;
+          store.commit('saveLabels');
+        }
+      }
+    },
+    deleteLabel(state, id: string) {
+      let index = -1;
+      for (let i = 0; i < state.labels.length; i++) {
+        if (state.labels[i].id === id) {
+          index = i;
+          break;
+        }
+      }
+      if (index >= 0) {
+        state.labels.splice(index, 1);
+        store.commit('saveLabels');
+      } else {
+        alert('删除失败')
+      }
+    },
     setCurrentLabel(state, id: string) {
       state.currentLabel = state.labels.filter(item => item.id === id)[0];
     }

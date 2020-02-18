@@ -22,7 +22,7 @@
     @Prop() readonly value!: Label[];
     selectedLabelsId: string[] = this.value.map(item => item.id);
 
-    labels() {
+    get labels() {
       return this.$store.state.labels;
     }
 
