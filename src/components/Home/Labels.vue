@@ -32,7 +32,6 @@
 
     toggle(id: string) {
       const index = this.selectedLabelsId.indexOf(id);
-      console.log(index);
       if (index >= 0) {
         this.selectedLabelsId.splice(index, 1);
       } else {
