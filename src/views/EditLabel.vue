@@ -19,7 +19,6 @@
   import {Component} from 'vue-property-decorator';
   import FormItem from '@/components/FormItem.vue';
   import Button from '@/components/Button.vue';
-  import store from '@/store/index2';
 
   @Component({
     components: {Button, FormItem}
@@ -28,7 +27,7 @@
     label?: Label = undefined;
 
     created() {
-      this.label = store.findLabel(this.$route.params.id);
+      // this.label = store.findLabel(this.$route.params.id);
       if (!this.label) {
         this.$router.replace('/404');
       }
@@ -36,13 +35,13 @@
 
     updateLabel(name: string) {
       if (this.label) {
-        store.updateLabel(this.label.id, name);
+        // store.updateLabel(this.label.id, name);
       }
     }
 
     deleteLabel() {
       if (this.label) {
-        store.deleteLabel(this.label.id);
+        // store.deleteLabel(this.label.id);
       }
       this.$router.push('/labels');
     }
