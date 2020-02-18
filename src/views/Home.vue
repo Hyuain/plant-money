@@ -5,7 +5,7 @@
     <div class="notes">
       <FormItem :value.sync="record.note" field-name="备注" place-holder="在这里输入备注"/>
     </div>
-    <Labels :data-source="labels" :value.sync="record.labels"/>
+    <Labels :value.sync="record.labels"/>
   </Layout>
 </template>
 

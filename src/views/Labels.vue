@@ -19,15 +19,23 @@
   import Button from '@/components/Button.vue';
 
   @Component({
-    components: {Button}
+    components: {Button},
+    computed: {
+      labels(){
+        return this.$store.state.labels
+      }
+    }
   })
   export default class Labels extends Vue {
-    // labels = store.labels;
+
+    created() {
+      this.$store.commit('fetchLabels');
+    }
 
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        // store.createLabel(name);
+        this.$store.commit('createLabel', name)
       }
     }
   }

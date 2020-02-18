@@ -4,9 +4,9 @@
       <button @click="create">新增标签</button>
     </div>
     <ul class="current">
-      <li v-for="label in dataSource" :key="label.id"
-          :class="{selected: selectedLabels.indexOf(label) >= 0}"
-          @click="toggle(label)">{{label.name}}
+      <li v-for="label in labels" :key="label.id"
+          :class="{selected: selectedLabelsId.indexOf(label.id) >= 0}"
+          @click="toggle(label.id)">{{label.name}}
       </li>
     </ul>
   </div>
@@ -17,26 +17,36 @@
   import {Component, Prop} from 'vue-property-decorator';
 
   @Component({
+    computed: {
+      labels() {
+        return this.$store.state.labels;
+      }
+    }
   })
   export default class Labels extends Vue {
-    @Prop() readonly dataSource: string[] | undefined;
-    @Prop() readonly value!: string[];
-    selectedLabels: string[] = this.value;
+    @Prop() readonly value!: Label[];
+    selectedLabelsId: string[] = this.value.map(item => item.id);
 
-    toggle(label: string) {
-      const index = this.selectedLabels.indexOf(label);
+    created() {
+      this.$store.commit('fetchLabels');
+    }
+
+    toggle(id: string) {
+      const index = this.selectedLabelsId.indexOf(id);
+      console.log(index);
       if (index >= 0) {
-        this.selectedLabels.splice(index, 1);
+        this.selectedLabelsId.splice(index, 1);
       } else {
-        this.selectedLabels.push(label);
+        this.selectedLabelsId.push(id);
       }
-      this.$emit('update:value', this.selectedLabels);
+      const selectedLabels: Label[] = this.$store.state.labels.filter((item: Label) => this.selectedLabelsId.indexOf(item.id) >= 0);
+      this.$emit('update:value', selectedLabels);
     }
 
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        // store.createLabel(name);
+        this.$store.commit('createLabel', name);
       }
     }
   }
