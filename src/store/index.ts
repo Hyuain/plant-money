@@ -32,11 +32,12 @@ const store = new Vuex.Store({
       const names = state.labels.map(item => item.name);
       if (names.indexOf(name) >= 0) {
         alert('标签名重复了');
+      } else {
+        const id = createId().toString();
+        state.labels.push({id, name: name});
+        store.commit('saveLabels');
+        alert('添加标签成功啦');
       }
-      const id = createId().toString();
-      state.labels.push({id, name: name});
-      store.commit('saveLabels');
-      alert('添加标签成功啦');
     },
     saveLabels(state) {
       localStorage.setItem('labels', JSON.stringify(state.labels));

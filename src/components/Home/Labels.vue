@@ -1,7 +1,7 @@
 <template>
   <div class="labels">
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="createLabel">新增标签</button>
     </div>
     <ul class="current">
       <li v-for="label in labels" :key="label.id"
@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import {mixins} from 'vue-class-component';
+  import LabelsHelper from '@/mixins/LabelsHelper';
 
   @Component({
     computed: {
@@ -23,7 +24,7 @@
       }
     }
   })
-  export default class Labels extends Vue {
+  export default class Labels extends mixins(LabelsHelper) {
     @Prop() readonly value!: Label[];
     selectedLabelsId: string[] = this.value.map(item => item.id);
 
@@ -43,12 +44,6 @@
       this.$emit('update:value', selectedLabels);
     }
 
-    create() {
-      const name = window.prompt('请输入标签名');
-      if (name) {
-        this.$store.commit('createLabel', name);
-      }
-    }
   }
 </script>
 

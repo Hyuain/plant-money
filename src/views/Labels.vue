@@ -8,15 +8,16 @@
       </div>
     </div>
     <div class="button-wrapper">
-      <Button @click="create">新建标签</Button>
+      <Button @click="createLabel">新建标签</Button>
     </div>
   </Layout>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
+  import {mixins} from 'vue-class-component';
   import Button from '@/components/Button.vue';
+  import LabelsHelper from '@/mixins/LabelsHelper';
 
   @Component({
     components: {Button},
@@ -26,18 +27,12 @@
       }
     }
   })
-  export default class Labels extends Vue {
+  export default class Labels extends mixins(LabelsHelper) {
 
     created() {
       this.$store.commit('fetchLabels');
     }
 
-    create() {
-      const name = window.prompt('请输入标签名');
-      if (name) {
-        this.$store.commit('createLabel', name)
-      }
-    }
   }
 </script>
 
