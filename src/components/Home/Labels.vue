@@ -17,16 +17,14 @@
   import {mixins} from 'vue-class-component';
   import LabelsHelper from '@/mixins/LabelsHelper';
 
-  @Component({
-    computed: {
-      labels() {
-        return this.$store.state.labels;
-      }
-    }
-  })
+  @Component
   export default class Labels extends mixins(LabelsHelper) {
     @Prop() readonly value!: Label[];
     selectedLabelsId: string[] = this.value.map(item => item.id);
+
+    labels() {
+      return this.$store.state.labels;
+    }
 
     created() {
       this.$store.commit('fetchLabels');

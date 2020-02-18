@@ -20,14 +20,13 @@
   import LabelsHelper from '@/mixins/LabelsHelper';
 
   @Component({
-    components: {Button},
-    computed: {
-      labels(){
-        return this.$store.state.labels
-      }
-    }
+    components: {Button}
   })
   export default class Labels extends mixins(LabelsHelper) {
+
+    get labels(){
+      return this.$store.state.labels
+    }
 
     created() {
       this.$store.commit('fetchLabels');

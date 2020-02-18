@@ -21,15 +21,13 @@
   import Button from '@/components/Button.vue';
 
   @Component({
-    components: {Button, FormItem},
-    computed: {
-      currentLabel(){
-        return this.$store.state.currentLabel
-      }
-    }
+    components: {Button, FormItem}
   })
   export default class EditLabel extends Vue {
-    label?: Label = undefined;
+
+    get currentLabel (){
+      return this.$store.state.currentLabel
+    }
 
     created() {
       const id = this.$route.params.id;
@@ -41,13 +39,13 @@
     }
 
     updateLabel(name: string) {
-      if (this.label) {
+      if (this.currentLabel) {
         // store.updateLabel(this.label.id, name);
       }
     }
 
     deleteLabel() {
-      if (this.label) {
+      if (this.currentLabel) {
         // store.deleteLabel(this.label.id);
       }
       this.$router.push('/labels');
